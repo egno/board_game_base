@@ -14,3 +14,7 @@ class Coordinate:
 
     def __hash__(self) -> int:
         return self.value.__hash__()
+
+    def __neg__(self) -> Self:
+        return self.__class__(value=-self.value)
+

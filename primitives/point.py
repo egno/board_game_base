@@ -17,18 +17,22 @@ class Point:
     max_bites: int = 10
     max_dimensions: int = 4
 
-    def __init__(self, *args: int) -> None:
+    def __init__(self, *args: int | Coordinate) -> None:
         if not args:
             args = (0,)
 
         if len(args) > self.max_dimensions:
             raise MaxDimensionsError()
 
+        int_args = tuple(
+            x.value if isinstance(x, Coordinate) else x
+            for x in args
+        )
         self.max_value = 2**self.max_bites - 1
-        if any([abs(x) > self.max_value for x in args]):
+        if any([abs(x) > self.max_value for x in int_args]):
             raise MaxValueError()
 
-        self.coordinates = tuple(Coordinate(value) for value in args)
+        self.coordinates = tuple(Coordinate(value) for value in int_args)
 
     @property
     def dimension(self) -> int:
