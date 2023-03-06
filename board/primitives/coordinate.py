@@ -17,4 +17,3 @@ class Coordinate:
 
     def __neg__(self) -> Self:
         return self.__class__(value=-self.value)
-

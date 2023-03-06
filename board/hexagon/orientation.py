@@ -1,8 +1,8 @@
 from typing import Final, Optional
 
-from primitives.orientation import Orientation as PrimitiveOrientation
+from board.primitives.orientation import Orientation as PrimitiveOrientation
 
-MAX_DISCRETENESS: Final[int] = 4
+MAX_DISCRETENESS: Final[int] = 3
 
 
 class Orientation(PrimitiveOrientation):

@@ -1,7 +1,7 @@
 from typing import Self, cast
 
-from primitives.coordinate import Coordinate
-from primitives.coordinates import CoordinatesType
+from board.primitives.coordinate import Coordinate
+from board.primitives.coordinates import CoordinatesType
 
 
 class MaxValueError(Exception):

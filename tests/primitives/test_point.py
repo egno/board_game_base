@@ -1,6 +1,6 @@
 import pytest
 
-from primitives.point import Point, MaxDimensionsError, MaxValueError
+from board.primitives.point import Point, MaxDimensionsError, MaxValueError
 
 
 @pytest.mark.parametrize("point_args, expected_repr", [

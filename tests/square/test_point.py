@@ -1,7 +1,7 @@
 import pytest
 
-from square.orientation import Orientation
-from square.point import Point
+from board.square.orientation import Orientation
+from board.square.point import Point
 
 
 class TestPoint:
