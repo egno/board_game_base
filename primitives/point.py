@@ -4,12 +4,29 @@ from primitives.coordinate import Coordinate
 from primitives.coordinates import CoordinatesType
 
 
+class MaxValueError(Exception):
+    pass
+
+
+class MaxDimensionsError(Exception):
+    pass
+
+
 class Point:
     coordinates: CoordinatesType
+    max_bites: int = 10
+    max_dimensions: int = 4
 
     def __init__(self, *args: int) -> None:
         if not args:
             args = (0,)
+
+        if len(args) > self.max_dimensions:
+            raise MaxDimensionsError()
+
+        self.max_value = 2**self.max_bites - 1
+        if any([abs(x) > self.max_value for x in args]):
+            raise MaxValueError()
 
         self.coordinates = tuple(Coordinate(value) for value in args)
 
@@ -62,7 +79,15 @@ class Point:
         return self.__class__(*new_coordinates)
 
     def __hash__(self) -> int:
-        return self.coordinates.__hash__()
+        # a collision-safe hash
+        return (((
+            sum([
+                abs(x.value) << (i*self.max_bites)
+                for i, x in enumerate(self.coordinates)
+            ]) << self.max_dimensions
+        ) + sum([
+            (x.value > 0) << i for i, x in enumerate(self.coordinates)
+        ])) << self.max_dimensions) + len(self.coordinates)
 
     def move(self, delta: Self) -> Self:
         new_coordinates = tuple(
