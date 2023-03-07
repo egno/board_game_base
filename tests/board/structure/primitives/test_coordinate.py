@@ -1,6 +1,6 @@
 import pytest
 
-from board.primitives.coordinate import Coordinate
+from board.structure.primitives.coordinate import Coordinate
 
 
 def test_create_coordinate():

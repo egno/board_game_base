@@ -11,10 +11,10 @@ class Orientation:
         self.value = ((value or 0) + self.discretness) % self.discretness
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__} {self}'
+        return f"{self.__class__.__name__} {self}"
 
     def __str__(self) -> str:
-        return f'{self.value}/{self.discretness}'
+        return f"{self.value}/{self.discretness}"
 
     def __add__(self, __o: Self) -> Self:
         if not self.same_type(__o):

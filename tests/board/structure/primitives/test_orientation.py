@@ -1,6 +1,6 @@
 import pytest
 
-from board.primitives.orientation import Orientation
+from board.structure.primitives import Orientation
 
 
 @pytest.mark.parametrize(

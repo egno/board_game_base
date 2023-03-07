@@ -1,6 +1,6 @@
 from typing import Final, Optional
 
-from board.primitives.orientation import Orientation as PrimitiveOrientation
+from board.structure.primitives import Orientation as PrimitiveOrientation
 
 MAX_DISCRETENESS: Final[int] = 4
 

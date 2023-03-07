@@ -7,7 +7,7 @@ class Coordinate:
     value: int = 0
 
     def __repr__(self) -> str:
-        return f'{self.value}'
+        return f"{self.value}"
 
     def __add__(self, __o: Self) -> Self:
         return self.__class__(self.value + __o.value)

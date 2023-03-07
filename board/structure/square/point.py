@@ -1,7 +1,7 @@
 from typing import Dict, Final, Self, Callable
 
-from board.primitives.point import Point as PrimitivePoint
-from board.square.orientation import Orientation
+from board.structure.primitives import Point as PrimitivePoint
+from board.structure.square.orientation import Orientation
 
 
 ORIENTATION_MAP: Final[Dict[Orientation, Callable]] = {

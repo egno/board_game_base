@@ -1,6 +1,7 @@
 import pytest
 
-from board.primitives.point import Point, MaxDimensionsError, MaxValueError
+from board.structure.primitives import (MaxDimensionsException,
+                                        MaxValueException, Point)
 
 
 @pytest.mark.parametrize("point_args, expected_repr", [
@@ -40,11 +41,11 @@ def test_point_hash(point_args, expected_hash):
 
 
 @pytest.mark.parametrize("point_args, expected_exception", [
-    ((1025,), MaxValueError),
-    ((-1025,), MaxValueError),
-    ((0, 1025), MaxValueError),
-    ((0, -1025), MaxValueError),
-    ((0, 0, 0, 0, 0), MaxDimensionsError),
+    ((1025,), MaxValueException),
+    ((-1025,), MaxValueException),
+    ((0, 1025), MaxValueException),
+    ((0, -1025), MaxValueException),
+    ((0, 0, 0, 0, 0), MaxDimensionsException),
 ])
 def test_point_exceptions(point_args, expected_exception):
     with pytest.raises(expected_exception):

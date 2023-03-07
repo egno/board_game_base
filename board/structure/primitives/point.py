@@ -1,15 +1,9 @@
 from typing import Self, cast
 
-from board.primitives.coordinate import Coordinate
-from board.primitives.coordinates import CoordinatesType
-
-
-class MaxValueError(Exception):
-    pass
-
-
-class MaxDimensionsError(Exception):
-    pass
+from board.structure.primitives.coordinate import Coordinate
+from board.structure.primitives.coordinates import CoordinatesType
+from board.structure.primitives.exceptions import (MaxDimensionsException,
+                                                   MaxValueException)
 
 
 class Point:
@@ -22,7 +16,7 @@ class Point:
             args = (0,)
 
         if len(args) > self.max_dimensions:
-            raise MaxDimensionsError()
+            raise MaxDimensionsException()
 
         int_args = tuple(
             x.value if isinstance(x, Coordinate) else x
@@ -30,7 +24,7 @@ class Point:
         )
         self.max_value = 2**self.max_bites - 1
         if any([abs(x) > self.max_value for x in int_args]):
-            raise MaxValueError()
+            raise MaxValueException()
 
         self.coordinates = tuple(Coordinate(value) for value in int_args)
 
@@ -39,13 +33,13 @@ class Point:
         return len(self.coordinates)
 
     def __repr__(self) -> str:
-        return ' '.join([
+        return " ".join([
             self.__class__.__name__,
             str(self),
         ])
 
     def __str__(self) -> str:
-        return ':'.join([
+        return ":".join([
             coordinate.__repr__()
             for coordinate
             in self.coordinates

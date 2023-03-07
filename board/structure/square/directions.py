@@ -1,7 +1,7 @@
 from typing import Final, Set
 
-from board.square.orientation import Orientation
-from board.square.point import Point
+from board.structure.square.orientation import Orientation
+from board.structure.square.point import Point
 
 
 DIRECTION_UP: Final[Point] = Point(1, 0)

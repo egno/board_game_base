@@ -1,0 +1,21 @@
+[project]
+name = "Board game base"
+version = "0.0.1"
+authors = [
+  { name="Egno", email="egno@duck.com" },
+]
+description = "A set of classes for a board game development"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: GPL :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/egno/board_game_base"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
