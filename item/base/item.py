@@ -1,11 +1,10 @@
-from abc import ABC
-from typing import Optional
+from typing import Optional, Self
 
 from board.structure.primitives import Point
 from player import Player
 
 
-class Item(ABC):
+class Item:
 
     def __init__(self,
                  player: Optional[Player] = None,
@@ -16,3 +15,11 @@ class Item(ABC):
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}"
+
+    def place(self, point: Point) -> Self:
+        self.point = point
+        return self
+
+    def remove(self) -> Self:
+        self.point = None
+        return self

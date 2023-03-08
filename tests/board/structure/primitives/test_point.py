@@ -2,6 +2,29 @@ import pytest
 
 from board.structure.primitives import (MaxDimensionsException,
                                         MaxValueException, Point)
+from board.structure.primitives.coordinate import Coordinate
+
+
+def test_point_initialization():
+    point = Point(1, 2, 3)
+    assert point.coordinates == (Coordinate(1), Coordinate(2), Coordinate(3))
+
+    with pytest.raises(MaxDimensionsException):
+        Point(1, 2, 3, 4, 5)
+
+    with pytest.raises(MaxValueException):
+        Point(2**10, 0, 0)
+
+    with pytest.raises(MaxValueException):
+        Point(0, 2**10, 0)
+
+    with pytest.raises(MaxValueException):
+        Point(0, 0, 2**10)
+
+
+def test_point_dimension():
+    point = Point(1, 2, 3)
+    assert point.dimension == 3
 
 
 @pytest.mark.parametrize("point_args, expected_repr", [

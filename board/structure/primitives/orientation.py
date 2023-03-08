@@ -7,7 +7,7 @@ class Orientation:
                  discretness: int,
                  value: Optional[int] = None,
                  ) -> None:
-        self.discretness = discretness
+        self.discretness = discretness or 1
         self.value = ((value or 0) + self.discretness) % self.discretness
 
     def __repr__(self) -> str:

@@ -8,3 +8,7 @@ class MaxValueException(PointException):
 
 class MaxDimensionsException(PointException):
     pass
+
+
+class RotationException(PointException):
+    pass

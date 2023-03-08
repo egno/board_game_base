@@ -1,15 +1,20 @@
-from typing import Self, cast
+from typing import Callable, Dict, Self, cast
 
 from board.structure.primitives.coordinate import Coordinate
 from board.structure.primitives.coordinates import CoordinatesType
 from board.structure.primitives.exceptions import (MaxDimensionsException,
-                                                   MaxValueException)
+                                                   MaxValueException,
+                                                   RotationException)
+from board.structure.primitives.orientation import Orientation
 
 
 class Point:
     coordinates: CoordinatesType
     max_bites: int = 10
     max_dimensions: int = 4
+    orientation_map: Dict[Orientation, Callable] = {
+        Orientation(0): lambda args: args,
+    }
 
     def __init__(self, *args: int | Coordinate) -> None:
         if not args:
@@ -100,3 +105,10 @@ class Point:
             isinstance(__o, self.__class__),
             self.dimension == cast(Self, __o).dimension,
         ])
+
+    def rotate(self, orientation: Orientation) -> Self:
+        func = self.orientation_map.get(orientation)
+        if func is None:
+            raise RotationException()
+        coordinates = func(*self.coordinates)
+        return self.__class__(*coordinates)
